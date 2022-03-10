@@ -90,3 +90,63 @@ function get_all_users(){
 	}
 	return $res;
 }
+
+function get_all_diagnostics(){
+	global $db;
+	$sql = "SELECT d.id as id, u.name as name, u.surname as surname,  u.patronymic as patronymic, d.date as date, d.content as content FROM ".DB_TABLE_DIAGNOSTIC." as d INNER JOIN ".DB_TABLE_USERS." as u ON u.id = d.user_id ORDER BY date DESC";
+
+	$sql = $db->query($sql)->fetchAll(PDO::FETCH_BOTH);
+	$res = [];
+	for ($i=0; $i < count($sql); $i++) { 
+	 	$sql[$i]['content'] = json_decode($sql[$i]['content']);
+	 	array_push($res, $sql[$i]);
+	 } 
+	 return $res;
+}
+
+function add_diagnostic($content, $user_id){
+	global $db;
+	$sql = "INSERT INTO `dignostic` (`id`, `date`, `content`, `user_id`) VALUES (NULL, current_timestamp(),  :content, :user_id)";
+	$params = ['content' => $content, 'user_id' => $user_id];
+	$db->diod_query($sql, $params);
+}
+
+function get_user_by_rfid($rfid){
+	global $db;
+	global $conn;
+	$sql = "SELECT id FROM ".DB_TABLE_USERS." WHERE rfid = ".$conn->quote($rfid);
+	$sql = $db->query($sql)->fetchAll(PDO::FETCH_BOTH);
+	if(count($sql) != 0){
+		$us  = new User();
+		$us->pre_init($sql[0]['id']);
+		return $us;
+	}else{
+		return false;
+	}
+
+}
+
+function update_settings($plastic, $paper, $glass){
+	global $db;
+	$sql = "UPDATE ".DB_TABLE_STATIONS_SETIINGS." SET value = :new_value WHERE setting_type = :set_type AND station_id = '1' ";
+	$params = ['new_value' => $plastic, 'set_type' => '3'];
+	$db->diod_query($sql, $params);
+	$params = ['new_value' => $paper, 'set_type' => '2'];
+	$db->diod_query($sql, $params);
+	$params = ['new_value' => $glass, 'set_type' => '1'];
+	$db->diod_query($sql, $params);
+}
+
+function start_work(){
+	global $db;
+	$sql = "UPDATE ".DB_TABLE_STATIONS_SETIINGS." SET value = :new_value WHERE setting_type = :set_type AND station_id = '1' ";
+	$params = ['new_value' => 'Проверка персоналом тех. обслуживания', 'set_type' => '4'];
+	$db->diod_query($sql, $params);
+}
+
+function stop_work(){
+	global $db;
+	$sql = "UPDATE ".DB_TABLE_STATIONS_SETIINGS." SET value = :new_value WHERE setting_type = :set_type AND station_id = '1' ";
+	$params = ['new_value' => 'Работает', 'set_type' => '4'];
+	$db->diod_query($sql, $params);
+}

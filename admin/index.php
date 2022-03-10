@@ -46,10 +46,13 @@ include_once("header.php");
                   <i class="fas mt-2 fa-trash "></i> Пластик
                 </a>
               </div>
-                <div class="alert ml-3 alert-success alert-dismissible">
-                  <h5><i class="icon fas fa-check"></i> Статус</h5>
+                              <div class="row" style="align-items: center; justify-content: center;">
+
+                <div class="alert ml-1 alert-dismissible" ng-class="station.status_class()" style="width: 75%">
+                  <h5><i class="icon fas " ng-class="station.status_icon_class()"></i> Статус</h5>
                   {{station.status.value}}
               </div>
+            </div>
               </div>
               <!-- /.card -->
             </div>
@@ -57,11 +60,11 @@ include_once("header.php");
    
          
     </div>
- <div class="col-md-6 mt-2 mr-3">
+ <div class="col-md-6 ml-5 mt-2 mr-3">
             <!-- Widget: user widget style 1 -->
             <div class="card ml-4 card-widget widget-user shadow">
               <!-- Add the bg color to the header using any of the bg-* classes -->
-              <div class="widget-user-header bg-info">
+              <div class="widget-user-header bg-success">
                 <h3 class="widget-user-username"><?=$user->surname?> <?=$user->name?> <?=$user->patronymic?></h3>
                 <h5 class="widget-user-desc"><?=$user->get_user_type()?></h5>
               </div>

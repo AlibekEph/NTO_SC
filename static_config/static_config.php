@@ -12,6 +12,7 @@ define('DB_TABLE_STATIONS', 'stations');
 define('DB_TABLE_STATIONS_SETIINGS_TYPE', 'stations_settings_type');
 define('DB_TABLE_STATIONS_SETIINGS', 'stations_settings');
 define('DB_TABLE_LOGS', 'log');
+define('DB_TABLE_DIAGNOSTIC', 'dignostic');
 
 
 //Pages

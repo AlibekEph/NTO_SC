@@ -24,6 +24,30 @@ index.controller('IndexCtrl',  function($scope, $http){
 		set_adress(adress){
 			this.adress=adress
 		}
+		status_class(){
+			if(this.status.value.includes('Работает')){
+				return 'alert-success';
+			}
+			if(this.status.value.includes('На тех обслуживании')){
+				return 'alert-warning';
+			}
+			if(this.status.value.includes('Временно не работает')){
+				return 'alert-danger';
+			}
+
+		}
+		status_icon_class(){
+			if(this.status.value.includes('Работает')){
+				return 'fa-check';
+			}
+			if(this.status.value.includes('На тех обслуживании')){
+				return 'fa-clock';
+			}
+			if(this.status.value.includes('Временно не работает')){
+				return 'fa-minus-circle';
+			}
+
+		}
 	}
 		$scope.station = new Station(0,0,0,'');
 		$scope.logs = [];

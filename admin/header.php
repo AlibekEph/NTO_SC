@@ -27,6 +27,8 @@
  -->
 <script src="./dist/js/angularjs/users.js"></script>
  <script src="./dist/js/angularjs/index.js"></script>
+ <script src="./dist/js/angularjs/control.js"></script>
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -75,6 +77,9 @@
            
             </ul> -->
           </li>
+          <?php 
+          if(is_admin()){
+          ?>
            <li class="nav-item">
             <a href="users.php" class="nav-link">
               <i class="nav-icon fas fa-user-circle"></i>
@@ -84,7 +89,18 @@
             </a>
        
           </li>
-         
+         <li class="nav-item">
+            <a href="control.php" class="nav-link">
+              <i class="nav-icon fas fa-cog"></i>
+              <p>
+                Управление
+              </p>
+            </a>
+       
+          </li>
+        <?php 
+      }
+        ?>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

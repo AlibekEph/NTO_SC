@@ -12,4 +12,15 @@ if($move == '1'){
 	echo json_encode([$station->settings, $station->adress]);
 }
 
+if($move == '2'){
+	$station_id = $_GET['station_id'];
+	$status = $_GET['status'];
+	$station = new Station($station_id);
+	$station->set_status($status);
+}
+
+if($move=='3'){
+	echo json_encode(get_all_diagnostics());
+}
+
 ?>
