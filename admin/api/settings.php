@@ -1,8 +1,8 @@
 <?php 
 	include($_SERVER['DOCUMENT_ROOT'] . "/functions.php");
-	if(!$user->is_auth){
-		go_to_page(AUTH);
-	}
+	// if(!$user->is_auth){
+	// 	go_to_page(AUTH);
+	// }
 
 $move = $_GET['move'];
 

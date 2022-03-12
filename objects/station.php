@@ -30,8 +30,6 @@ class Station{
 	function set_status($status){
 		$sql = "UPDATE ".DB_TABLE_STATIONS_SETIINGS." SET value = :new_status WHERE setting_type = '4' AND station_id = :id";
 		$params = ['new_status' => $status, 'id' => $this->id ];
-		var_dump($params);
-		echo $sql;
 		$this->db->diod_query($sql, $params);
 
 	}

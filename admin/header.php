@@ -28,6 +28,8 @@
 <script src="./dist/js/angularjs/users.js"></script>
  <script src="./dist/js/angularjs/index.js"></script>
  <script src="./dist/js/angularjs/control.js"></script>
+ <script src="./dist/js/angularjs/shop.js"></script>
+ <script src="./dist/js/angularjs/cabinet.js"></script>
 
 </head>
 <body class="hold-transition sidebar-mini">
@@ -77,6 +79,24 @@
            
             </ul> -->
           </li>
+           <li class="nav-item">
+            <a href="cabinet.php" class="nav-link">
+              <i class="nav-icon fas fa-cog"></i>
+              <p>
+                Личный кабинет
+              </p>
+            </a>
+       
+          </li>
+           <li class="nav-item">
+            <a href="shop.php" class="nav-link">
+              <i class="nav-icon fas  fa-shopping-basket"></i>
+              <p>
+                Магазин
+              </p>
+            </a>
+       
+          </li>
           <?php 
           if(is_admin()){
           ?>
@@ -98,9 +118,19 @@
             </a>
        
           </li>
+           
         <?php 
       }
         ?>
+        <li class="nav-item">
+            <a href="logout.php" class="nav-link">
+              <i class="nav-icon fas fa-times-circle"></i>
+              <p>
+                Выход
+              </p>
+            </a>
+       
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

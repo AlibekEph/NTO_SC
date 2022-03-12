@@ -52,11 +52,17 @@ users.controller('UsersCtrl',  function($scope, $http){
 		$scope.close_minus_balance();
 	}
 
+$scope.update = function(){
 	$http.get('api/admin_api.php?move=2').then(function success(result){
 		let data = result.data;
+		$scope.users = [];
 		for (var i = data.length - 1; i >= 0; i--) {
 			$scope.users.push(new User(data[i].id, data[i].surname, data[i].name, data[i].patronymic, data[i].balance, data[i].adress, data[i].user_type, data[i].photo));
 		}
 	});
+}
+$scope.update();
+	let timerId = setInterval(() => $scope.update(), 5000);
+
 
 });

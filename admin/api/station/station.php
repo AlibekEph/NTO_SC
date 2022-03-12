@@ -115,6 +115,21 @@ if($move == '5'){
 	return $status;
 }
 
+if($move == '6'){
+	if(isset($_GET['temp']) && isset($_GET['vandal']) ){
+		$vandal = $_GET['vandal'];
+		$temp = $_GET['temp'];
+		set_add_moves($temp, $vandal);
+		$status['status'] = 'success';
+		$status['data'] = ['msg' => "Данные успешно обработаны"];
+		return $status;
+	}else{
+		$status['status'] = 'error';
+		$status['error'] = 'Нет некоторых параметров';
+		return $status;
+	}
+}
+
 }
 
 

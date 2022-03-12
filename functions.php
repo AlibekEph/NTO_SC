@@ -150,3 +150,50 @@ function stop_work(){
 	$params = ['new_value' => 'Работает', 'set_type' => '4'];
 	$db->diod_query($sql, $params);
 }
+
+function set_ruch_moves($otsek1, $otsek2, $otsek3, $voda, $display){
+	global $db;
+	$sql = "UPDATE ".DB_TABLE_STATIONS_SETIINGS." SET value = :new_value WHERE setting_type = :set_type AND station_id = '1' ";
+	$params = ['new_value' => $otsek1, 'set_type' => '5'];
+	$db->diod_query($sql, $params);
+	$params = ['new_value' => $otsek2, 'set_type' => '6'];
+	$db->diod_query($sql, $params);
+	$params = ['new_value' => $otsek3, 'set_type' => '7'];
+	$db->diod_query($sql, $params);
+	$params = ['new_value' => $voda, 'set_type' => '10'];
+	$db->diod_query($sql, $params);
+	$params = ['new_value' => $display, 'set_type' => '11'];
+	$db->diod_query($sql, $params);
+}
+
+function set_add_moves($temp, $vandal){
+	global $db;
+	$sql = "UPDATE ".DB_TABLE_STATIONS_SETIINGS." SET value = :new_value WHERE setting_type = :set_type AND station_id = '1' ";
+	$params = ['new_value' => $temp, 'set_type' => '8'];
+	$db->diod_query($sql, $params);
+	$params = ['new_value' => $vandal, 'set_type' => '9'];
+	$db->diod_query($sql, $params);
+}
+
+function get_all_item(){
+	global $db;
+	$sql = "SELECT * FROM products";
+	$sql = $db->query($sql)->fetchAll(PDO::FETCH_BOTH);
+	return $sql;
+}
+
+function get_item($id){
+	global $db;
+	global $conn;
+	$sql = "SELECT * FROM products WHERE id = ".$conn->quote($id);
+	$sql  =$db->query($sql)->fetchAll(PDO::FETCH_BOTH)[0];
+	return $sql;
+}
+
+function add_item_to_user($user_id, $item_id){
+	global $db;
+	$sql = "INSERT INTO `products_to_users` (`id`, `user_id`, `product_id`) VALUES (NULL, :user_id, :item_id)";
+	$params = ['user_id' => $user_id, 'item_id' => $item_id];
+	$db->diod_query($sql, $params);
+	
+}

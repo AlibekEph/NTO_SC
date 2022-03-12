@@ -74,4 +74,6 @@ index.controller('IndexCtrl',  function($scope, $http){
 
 
 	$scope.update();
+	let timerId = setInterval(() => $scope.update(), 5000);
+
 });

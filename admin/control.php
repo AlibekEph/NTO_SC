@@ -19,8 +19,16 @@ include_once("header.php");
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
-  
+      <div ng-if="station.vandal.value == '1'" class="ml-3 mr-3 alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h5><i class="icon fas fa-users"></i> Опасность!</h5>
+           Внимание! Кто-то тресет урны.
+        </div>
+          <div ng-if="station.tempInt > 26.0 " class="ml-3 mr-3 alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h5><i class="icon fas fa-fire"></i> Опасность!</h5>
+           Внимание! Возможен пожар.
+        </div>
             <!-- /.widget-user -->
              <div class="ml-3 card mr-3">
              <div class="card card-success">
@@ -29,6 +37,18 @@ include_once("header.php");
               </div>
               <div class="card-body">
                 <label for="exampleInputBorder">Текущий статус: {{station.status.value}} <code class="ml-3">обновлено {{station.status.date}}</code></label>
+                <br>
+                <label for="exampleInputBorder">Текущая температура: {{station.temp.value}} <code class="ml-3">обновлено {{station.temp.date}}</code></label>
+                <br>
+                <label for="exampleInputBorder">Отсек 1: {{station.otsek1.value}} <code class="ml-3">обновлено {{station.otsek1.date}}</code></label>
+                <br>
+                <label for="exampleInputBorder">Отсек 2: {{station.otsek2.value}} <code class="ml-3">обновлено {{station.otsek2.date}}</code></label>
+                <br>
+                <label for="exampleInputBorder">Отсек 3: {{station.otsek3.value}} <code class="ml-3">обновлено {{station.otsek3.date}}</code></label>
+                <br>
+                <label for="exampleInputBorder">Вода: {{station.voda.value}} <code class="ml-3">обновлено {{station.voda.date}}</code></label>
+                <br>
+                <label for="exampleInputBorder">Дисплей: {{station.display.value}} <code class="ml-3">обновлено {{station.display.date}}</code></label>
                 <div class="form-group">
                         <label>Статус</label>
                         <select ng-model="station.status.value" ng-change="station.change_status()" class="form-control">

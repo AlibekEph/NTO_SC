@@ -19,7 +19,7 @@ if($move=='1'){
 			'display' => $_GET['display']
 		];
 
-		// Отправка данных радмиру
+		set_ruch_moves($_GET['otsek1'], $_GET['otsek2'], $_GET['otsek3'], $_GET['voda'], $_GET['display']);
 
 	$status['status'] = 'success';
 	$status['data'] = ['msg' => 'Данные успешно переданы','data' => $send_arr];

@@ -136,6 +136,13 @@ class User {
 		$sql = "SELECT u.name as name, u.surname as surname, u.patronymic as patronymic, u.user_type as user_type_id, u_type.title as user_type, log.move as move, log.date as date, log.id as id  FROM ".DB_TABLE_LOGS." as log INNER JOIN ".DB_TABLE_USERS." as u ON log.user_id = u.id INNER JOIN ".DB_TABLE_USERS_TYPE." as u_type ON u_type.id = u.user_type WHERE log.user_id = ".$this->conn->quote($this->id)." ORDER BY date DESC";
 		$sql = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 		return $sql;
+	}
+
+	public function get_products(){
+		$sql = "SELECT p.id as id, p.title as title, p.coast as coast, p.photo as photo FROM products as p INNER JOIN products_to_users as p_to_u ON p.id = p_to_u.product_id WHERE p_to_u.user_id = ".$this->conn->quote($this->id);
+		$sql = $this->db->query($sql);
+		$sql = $sql->fetchAll(PDO::FETCH_BOTH);
+		return $sql;
 	}	
 
 
